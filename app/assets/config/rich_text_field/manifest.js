@@ -1,0 +1,1 @@
+//= link rich_text_field.css
