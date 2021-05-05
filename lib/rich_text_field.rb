@@ -6,11 +6,14 @@ module RichTextField
 	class Engine < Rails::Engine
     # initializer 'administrate-field-rich_text_field.add_assets' do |app|
     #   app.config.assets.precompile << 'rich_text_field.js' if app.config.respond_to? :assets
-    #   Administrate::Engine.add_javascript 'rich_text_field.js' if defined?(Administrate::Engine)
     # end
-		Administrate::Engine.add_stylesheet(
-			"rich_text_field",
-		)
+    initializer "administrate.assets.precompile" do |app|
+      app.config.assets.precompile += %w( rich_text_field.css )
+      Administrate::Engine.add_stylesheet 'rich_text_field.css' if defined?(Administrate::Engine)
+    end
+		# Administrate::Engine.add_stylesheet(
+		# 	"rich_text_field",
+		# )
   end
 
   class RichTextField < Administrate::Field::Text
